@@ -112,7 +112,12 @@ footer ul{
 }
 
 .footer-col{
-    width: 10%;
+    width: 100%;
+}
+
+footer div ul{
+    display: flex;
+    margin-right: 10px;
 }
 
 .footer-col h4{
@@ -132,6 +137,10 @@ footer ul{
     background-color: white;
     height: 2px;
     width: 40px;
+}
+
+.name {
+    margin: 0 15px;
 }
 
 footer ul li:not(:last-child){
