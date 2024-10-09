@@ -123,7 +123,12 @@ footer ul{
 }
 
 .footer-col{
-    width: 10%;
+    width: 100%;
+}
+
+footer div ul{
+    display: flex;
+    margin-right: 10px;
 }
 
 footer div ul{
@@ -152,6 +157,10 @@ footer div ul{
 
 footer li.name {
     margin: 0 10px;
+}
+
+.name {
+    margin: 0 15px;
 }
 
 footer ul li:not(:last-child){
