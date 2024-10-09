@@ -4,10 +4,11 @@
     text-decoration: none;
     list-style: none;
     box-sizing: border-box;
+    font-family: "Mouse Memoirs";
 }
 
 body{
-    background-image: url(GuitarSalmon-2.png);
+    background-image: url(img/Theme.svg);
     background-size: cover;
     display: flex;
     flex-direction: column;
@@ -15,6 +16,7 @@ body{
 }
 
 nav{
+    position: relative;
     background: #B10000;
     height: 80px;
     width: 100%;
@@ -22,10 +24,19 @@ nav{
 
 label.logo{
     color: white;
-    font-size: 35px;
+    font-size: 50px;
     line-height: 80px;
     padding: 0 100px;
-    font-weight: bold;
+}
+
+label img {
+    position: absolute;
+    max-width: 100%;
+    width: 60px;
+    height: auto;
+    top: 10px;
+    left: 30px;
+    transition: all 0.5s ease;
 }
 
 nav ul{
@@ -41,13 +52,13 @@ nav ul li{
 
 nav ul li a{
     color: white;
-    font-size: 17px;
+    font-size: 27px;
     padding: 7px 13px;
     border-radius: 3px;
     text-transform: uppercase;
 }
 
-a.active,a:hover{
+nav a.active,nav a:hover{
     background: #500000;
     transition: .5s;
 }
@@ -67,8 +78,7 @@ a.active,a:hover{
 }
 
 .button {
-    font-family: "Roboto",sans-serif;
-    font-size: 18px;
+    font-size: 28px;
     font-weight: bold;
     display: block;
     margin: auto;
@@ -80,6 +90,7 @@ a.active,a:hover{
     color: white;
     cursor: pointer;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    margin-top: 1%;
 }
 
 .button:hover,.button:focus,.button:active {
@@ -115,11 +126,16 @@ footer ul{
     width: 10%;
 }
 
+footer div ul{
+    display: flex;
+    margin-right: 10px;
+}
+
 .footer-col h4{
     position: relative;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     font-weight: 400;
-    font-size: 22px;
+    font-size: 32px;
     color: white;
     text-transform: capitalize;
 }
@@ -131,7 +147,11 @@ footer ul{
     bottom: -6px;
     background-color: white;
     height: 2px;
-    width: 40px;
+    width: 60px;
+}
+
+footer li.name {
+    margin: 0 10px;
 }
 
 footer ul li:not(:last-child){
@@ -139,21 +159,30 @@ footer ul li:not(:last-child){
 }
 
 footer ul li a{
-    display: block;
-    font-size: 19px;
+    display: inline-block;
+    padding-right: 10px;
+    font-size: 29px;
     text-transform: capitalize;
     color: white;
     text-decoration: none;
     transition: .4s;
+    width: auto;
+    white-space: nowrap;
 }
 
 @media (max-width: 952px){
+    label img {
+        width: 10%;
+        width: 30px;
+        left: 15px;
+        top: 25px;
+    }
     label.logo{
         font-size: 30px;
         padding-left: 50px;
     }
     nav ul li a{
-        font-size: 16px;
+        font-size: 20px;
     }
     footer ul li a{
         font-size: 16px;
@@ -163,6 +192,9 @@ footer ul li a{
 @media (max-width: 858px){
     .checkbtn{
         display: block;
+    }
+    label img {
+        width: 4%;
     }
     ul{
         position: fixed;
@@ -182,7 +214,7 @@ footer ul li a{
     nav ul li a{
         font-size: 20px;
     }
-    a:hover,a.active{
+    nav a:hover,nav a.active{
         background: none;
         color: #500000;
     }
