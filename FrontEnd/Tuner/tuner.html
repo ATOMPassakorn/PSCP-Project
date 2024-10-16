@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guitar Tuner</title>
+    <link rel="icon" type="img/JPG" href="../Homepage/img/Logo.JPG">
+    <link rel="stylesheet" href="styles.css">
+    <link href='https://fonts.googleapis.com/css?family=Mouse Memoirs' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+</head>
+<body>
+    <nav>
+        <input type="checkbox" id="check">
+        <label for="check" class="checkbtn">
+            <i class="fas fa-bars" class="checkbtn"></i>
+        </label>
+        <label class="logo">Guitar Salmon</label>
+        <label><img src="../Homepage/img/Logo.JPG" alt=""></label>
+        <ul>
+            <li><a href="../Homepage/index.html">Home</a></li>
+            <li><a href="../Tuner/tuner.html">Guitar Tuner</a></li>
+            <li><a href="#">Bass Tuner</a></li>
+        </ul>
+    </nav>
+    <button class="button" id="startButton">Start Tuning</button>
+    <p>Guitar Tuner</p>
+    <label for="noteSelect">Choose Note :</label>
+    <select id="noteSelect">
+        <option value="E">E (82.41 Hz)</option>
+        <option value="A">A (110.00 Hz)</option>
+        <option value="D">D (146.83 Hz)</option>
+        <option value="G">G (196.00 Hz)</option>
+        <option value="B">B (246.94 Hz)</option>
+        <option value="E">E (329.63 Hz)</option>
+    </select>
+    <div id="selectedNote">Tuning : <span id="currentNote">E4</span></div>
+    <div id="output">Now : <span id="note">-</span></div>
+    <div id="tuningStatus">Status : <span id="status">-</span></div>
+    <footer>
+        <div class="footer-col">
+            <h4>teams</h4>
+            <ul>
+                <li class="name" id="Atom"><a href="https://www.github.com/atompassakorn" target="_blank">@ATOMPassakorn</a></li>
+                <li class="name" id="Poom"><a href="https://github.com/Rattapoomm" target="_blank">@Rattapoomm</a></li>
+                <li class="name" id="Coffee"><a href="https://github.com/Peerapat-S" target="_blank">@Peerapat-S</a></li>
+                <li class="name" id="Punch"><a href="https://github.com/whalpnc" target="_blank">@whalpnc</a></li>
+                <li class="name" id="Beem"><a href="https://github.com/Asujiikaruda" target="">@Asujiikaruda</a></li>
+            </ul>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
