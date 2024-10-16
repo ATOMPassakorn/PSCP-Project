@@ -53,7 +53,7 @@ let audioContext;
 
                 const selectedNote = document.getElementById('noteSelect').value;
                 const targetFrequency = noteFrequencies[selectedNote];
-                if (pitch && Math.abs(frequency - targetFrequency) < 5) {
+                if (pitch && Math.abs(frequency - targetFrequency) < 10) {
                     document.getElementById('status').textContent = 'ตรงกัน!';
                 } else {
                     document.getElementById('status').textContent = 'ปรับเสียงให้ตรง!';
