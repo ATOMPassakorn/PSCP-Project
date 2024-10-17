@@ -35,7 +35,7 @@ let audioContext;
 
                 const result = await response.json();
                 document.getElementById('note').textContent = result.message;
-                }, 50000);
+                }, 100000);
             };
 
             mediaRecorder.start();
@@ -55,7 +55,7 @@ let audioContext;
 
                 const selectedNote = document.getElementById('noteSelect').value;
                 const targetFrequency = noteFrequencies[selectedNote];
-                if (pitch && Math.abs(frequency - targetFrequency) < 8) {
+                if (pitch && Math.abs(frequency - targetFrequency) < 15) {
                     document.getElementById('status').textContent = 'ตรงกัน!';
                 } else {
                     document.getElementById('status').textContent = 'ปรับเสียงให้ตรง!';
