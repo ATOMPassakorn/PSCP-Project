@@ -24,6 +24,7 @@ let audioContext;
                 const audioUrl = URL.createObjectURL(audioBlob);
                 document.getElementById('note').textContent = 'กำลังอัปโหลด...';
 
+                setTimeout(async () => {
                 const formData = new FormData();
                 formData.append('audio', audioBlob, 'audio.wav');
 
@@ -34,6 +35,7 @@ let audioContext;
 
                 const result = await response.json();
                 document.getElementById('note').textContent = result.message;
+                }, 50000);
             };
 
             mediaRecorder.start();
@@ -53,7 +55,7 @@ let audioContext;
 
                 const selectedNote = document.getElementById('noteSelect').value;
                 const targetFrequency = noteFrequencies[selectedNote];
-                if (pitch && Math.abs(frequency - targetFrequency) < 10) {
+                if (pitch && Math.abs(frequency - targetFrequency) < 8) {
                     document.getElementById('status').textContent = 'ตรงกัน!';
                 } else {
                     document.getElementById('status').textContent = 'ปรับเสียงให้ตรง!';
@@ -116,3 +118,4 @@ let audioContext;
         document.getElementById('noteSelect').onchange = function() {
             document.getElementById('currentNote').textContent = this.value;
         };
+        
