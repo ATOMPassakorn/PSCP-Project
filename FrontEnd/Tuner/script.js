@@ -24,7 +24,7 @@ let audioContext;
                 const audioUrl = URL.createObjectURL(audioBlob);
                 document.getElementById('note').textContent = 'กำลังอัปโหลด...';
 
-                setTimeout(async () => {
+                setTimeout(async () => { //สร้างเพื่อเรียกใช้เวลา
                 const formData = new FormData();
                 formData.append('audio', audioBlob, 'audio.wav');
 
@@ -35,7 +35,7 @@ let audioContext;
 
                 const result = await response.json();
                 document.getElementById('note').textContent = result.message;
-                }, 100000);
+                }, 1000000); // ตั้งเวลาดีเลย์ 10 วินาที
             };
 
             mediaRecorder.start();
