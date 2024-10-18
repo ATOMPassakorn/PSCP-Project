@@ -1,0 +1,12 @@
+{
+  "routes": [
+    {
+      "src": "/",
+      "dest": "/FrontEnd/Homepage/index.html"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/FrontEnd/$1"
+    }
+  ]
+}
