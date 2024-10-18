@@ -35,7 +35,7 @@ let audioContext;
 
                 const result = await response.json();
                 document.getElementById('note').textContent = result.message;
-                }, 100000); // ตั้งเวลาดีเลย์ 10 วินาที
+                }, 1000000); // ตั้งเวลาดีเลย์ 10 วินาที
             };
 
             mediaRecorder.start();
