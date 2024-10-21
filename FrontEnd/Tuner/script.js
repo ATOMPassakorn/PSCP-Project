@@ -28,7 +28,7 @@ let audioContext;
                 const formData = new FormData();
                 formData.append('audio', audioBlob, 'audio.wav');
 
-                const response = await fetch('http://127.0.0.1:5000/upload', {
+                const response = await fetch('https://guitar-salmon.onrender.com/upload', {
                     method: 'POST',
                     body: formData
                 });
