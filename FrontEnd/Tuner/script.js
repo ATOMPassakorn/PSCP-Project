@@ -37,6 +37,8 @@ async function startTuning() {
             const result = await response.json();
             document.getElementById('note').textContent = '-';
             document.getElementById('status').textContent = '-';
+            setTimeout(() => {
+                location.reload();});
         } catch (error) {
             console.error('Error uploading audio:', error);
             document.getElementById('note').textContent = 'ERROR';
