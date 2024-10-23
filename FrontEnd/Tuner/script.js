@@ -29,7 +29,7 @@ async function startTuning() {
         formData.append('audio', audioBlob, 'audio.wav');
 
         try {
-            const response = await fetch('https://guitar-salmon.onrender.com/upload', {
+            const response = await fetch('http://127.0.0.1:5000/upload', {
                 method: 'POST',
                 body: formData
             });
@@ -38,7 +38,8 @@ async function startTuning() {
             document.getElementById('note').textContent = '-';
             document.getElementById('status').textContent = '-';
             setTimeout(() => {
-                location.reload();});
+                location.reload();
+            });
         } catch (error) {
             console.error('Error uploading audio:', error);
             document.getElementById('note').textContent = 'ERROR';
@@ -76,14 +77,34 @@ function analyze() {
     getPitch();
 }
 
-const noteFrequencies = {
-    'E': 82.41, // สาย 6
-    'A': 110.00, // สาย 5
-    'D': 146.83, // สาย 4
-    'G': 196.00, // สาย 3
-    'B': 246.94, // สาย 2
-    'E_high': 369.63, // สาย 1
+const standardFrequencies = {
+    'E': 82.41,
+    'A': 110.00,
+    'D': 146.83,
+    'G': 196.00,
+    'B': 246.94,
+    'E_high': 369.63,
 };
+
+const halfStepDownFrequencies = {
+    'Eb': 77.78,
+    'Ab': 103.83,
+    'Db': 138.59,
+    'Gb': 196.00,
+    'Bb': 186.94,
+    'Eb_high': 369.63,
+};
+
+const fullStepDownFrequencies = {
+    'D': 73.42,
+    'G': 98.00,
+    'C': 130.81,
+    'F': 174.61,
+    'A': 220.00,
+    'D_high': 293.66,
+};
+
+let noteFrequencies = standardFrequencies;
 
 function getPitchFromData(dataArray) {
     let maxIndex = -1;
@@ -128,3 +149,40 @@ document.getElementById('startButton').onclick = () => {
 document.getElementById('noteSelect').onchange = function() {
     document.getElementById('currentNote').textContent = this.value;
 };
+
+document.getElementById('tuningType').onchange = async function() {
+    const selectedType = this.value;
+
+    // กำหนด noteFrequencies ตามประเภทการจูน
+    if (selectedType === "standard") {
+        noteFrequencies = standardFrequencies;
+    } else if (selectedType === "half_step_down") {
+        noteFrequencies = halfStepDownFrequencies;
+    } else if (selectedType === "full_step_down") {
+        noteFrequencies = fullStepDownFrequencies;
+    }
+
+    const response = await fetch('http://127.0.0.1:5000/get_tuning', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ tuning: selectedType })
+    });
+
+    const data = await response.json();
+    const notes = data.notes;
+
+    const noteSelect = document.getElementById('noteSelect');
+    noteSelect.innerHTML = '';
+
+    notes.forEach(note => {
+        const option = document.createElement('option');
+        option.value = note;
+        option.textContent = `${note} (${noteFrequencies[note]} Hz)`;
+        noteSelect.appendChild(option);
+    });
+
+    document.getElementById('currentNote').textContent = notes[0];
+};
+
