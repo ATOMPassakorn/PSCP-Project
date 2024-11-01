@@ -162,7 +162,7 @@ document.getElementById('tuningType').onchange = async function() {
         noteFrequencies = fullStepDownFrequencies;
     }
 
-    // อัปเดต dropdown ตามประเภทการจูน
+    // เปลี่ยนค่าตามประเภทการจูน
     const noteSelect = document.getElementById('noteSelect');
     noteSelect.innerHTML = ''; // ล้างตัวเลือกปัจจุบัน
 
@@ -172,7 +172,7 @@ document.getElementById('tuningType').onchange = async function() {
     } else if (selectedType === "full_step_down"){
         notes = ['D', 'G', 'C', 'F', 'A', 'D_high']
     } else {
-        // หากไม่ใช่ Half Step Down ให้ใช้โน้ตตามประเภทการจูนที่เลือก
+        // ค่าเริ่มต้น
         notes = Object.keys(noteFrequencies);
     }
 
@@ -183,10 +183,8 @@ document.getElementById('tuningType').onchange = async function() {
         noteSelect.appendChild(option);
     });
 
-    // กำหนดโน้ตที่เลือกเป็นโน้ตแรกในรายการ
     document.getElementById('currentNote').textContent = notes[0];
 
-    // ส่งข้อมูลไปยังเซิร์ฟเวอร์
     const response = await fetch('https://guitar-salmon.onrender.com/get_tuning', {
         method: 'POST',
         headers: {
@@ -196,6 +194,5 @@ document.getElementById('tuningType').onchange = async function() {
     });
 
     const data = await response.json();
-    // ในกรณีนี้ คุณอาจไม่จำเป็นต้องใช้ data.notes แล้ว เนื่องจากเราได้จัดการด้วยตนเอง
 };
 
