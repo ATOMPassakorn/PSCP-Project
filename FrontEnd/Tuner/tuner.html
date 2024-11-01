@@ -25,6 +25,13 @@
     </nav>
     <button class="button" id="startButton">Start Tuning</button>
     <p>Guitar Tuner</p>
+    <label for="tuningType">Choose Tuning Type:</label>
+    <select id="tuningType">
+        <option value="standard">Standard</option>
+        <option value="half_step_down">Half Step Down</option>
+        <option value="full_step_down">Full Step Down</option>
+    </select>
+    
     <label for="noteSelect">Choose Note :</label>
     <select id="noteSelect">
         <option value="E">E (82.41 Hz)</option>
@@ -32,11 +39,13 @@
         <option value="D">D (146.83 Hz)</option>
         <option value="G">G (196.00 Hz)</option>
         <option value="B">B (246.94 Hz)</option>
-        <option value="E">E (329.63 Hz)</option>
+        <option value="E_high">E (329.63 Hz)</option>
     </select>
+    
     <div id="selectedNote">Tuning : <span id="currentNote">E</span></div>
     <div id="output">Now : <span id="note">-</span></div>
     <div id="tuningStatus">Status : <span id="status">-</span></div>
+    
     <footer>
         <div class="footer-col">
             <h4>teams</h4>
