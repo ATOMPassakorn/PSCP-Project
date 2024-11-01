@@ -1,7 +1,28 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import os
 
 app = Flask(__name__)
+CORS(app)
+
+# ฟังก์ชันคืนค่าตามการจูน
+def get_tuning_notes(tuning_type):
+    if tuning_type == "standard":
+        return ['E', 'A', 'D', 'G', 'B', 'E_high']
+    elif tuning_type == "half_step_down":
+        return ['Eb', 'Ab', 'Db', 'Gb', 'Bb', 'Eb']
+    elif tuning_type == "full_step_down":
+        return ['D', 'G', 'C', 'F', 'A', 'D']
+    else:
+        return []
+
+@app.route('/get_tuning', methods=['POST'])
+def get_tuning():
+    data = request.get_json()
+    tuning_type = data.get('tuning')
+    notes = get_tuning_notes(tuning_type)
+    return jsonify({'notes': notes})
+
 UPLOAD_FOLDER = 'uploads'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
@@ -20,5 +41,4 @@ def upload_file():
     return jsonify({'message': 'upload success'}), 200
 
 if __name__ == '__main__':
-    app.run(debug=True)
-
+    app.run(host='0.0.0.0', port=5000, debug=True)
