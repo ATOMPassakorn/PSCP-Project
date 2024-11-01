@@ -162,6 +162,31 @@ document.getElementById('tuningType').onchange = async function() {
         noteFrequencies = fullStepDownFrequencies;
     }
 
+    // อัปเดต dropdown ตามประเภทการจูน
+    const noteSelect = document.getElementById('noteSelect');
+    noteSelect.innerHTML = ''; // ล้างตัวเลือกปัจจุบัน
+
+    let notes;
+    if (selectedType === "half_step_down") {
+        notes = ['Eb', 'Ab', 'Db', 'Gb', 'Bb', 'Eb_high'];
+    } else if (selectedType === "full_step_down"){
+        notes = ['D', 'G', 'C', 'F', 'A', 'D_high']
+    } else {
+        // หากไม่ใช่ Half Step Down ให้ใช้โน้ตตามประเภทการจูนที่เลือก
+        notes = Object.keys(noteFrequencies);
+    }
+
+    notes.forEach(note => {
+        const option = document.createElement('option');
+        option.value = note;
+        option.textContent = `${note} (${noteFrequencies[note]} Hz)`;
+        noteSelect.appendChild(option);
+    });
+
+    // กำหนดโน้ตที่เลือกเป็นโน้ตแรกในรายการ
+    document.getElementById('currentNote').textContent = notes[0];
+
+    // ส่งข้อมูลไปยังเซิร์ฟเวอร์
     const response = await fetch('https://guitar-salmon.onrender.com/get_tuning', {
         method: 'POST',
         headers: {
@@ -171,18 +196,6 @@ document.getElementById('tuningType').onchange = async function() {
     });
 
     const data = await response.json();
-    const notes = data.notes;
-
-    const noteSelect = document.getElementById('noteSelect');
-    noteSelect.innerHTML = '';
-
-    notes.forEach(note => {
-        const option = document.createElement('option');
-        option.value = note;
-        option.textContent = `${note} (${noteFrequencies[note]} Hz)`;
-        noteSelect.appendChild(option);
-    });
-
-    document.getElementById('currentNote').textContent = notes[0];
+    // ในกรณีนี้ คุณอาจไม่จำเป็นต้องใช้ data.notes แล้ว เนื่องจากเราได้จัดการด้วยตนเอง
 };
 
