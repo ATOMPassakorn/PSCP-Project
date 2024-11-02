@@ -122,6 +122,24 @@ img {
     margin: auto;
 }
 
+#needle {
+    width: 4px;
+    height: 100px;
+    background: red;
+    position: relative;
+    transform-origin: bottom;
+    margin: 20px auto;
+}
+
+.needle-container {
+    width: 20px;
+    height: 150px;
+    border: 2px solid #333;
+    border-radius: 5px;
+    position: relative;
+    margin: 0 auto;
+}
+
 footer{
     display: flex;
     flex-wrap: wrap;

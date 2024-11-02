@@ -66,12 +66,17 @@ function analyze() {
 
         const selectedNote = document.getElementById('noteSelect').value;
         const targetFrequency = noteFrequencies[selectedNote];
-        if (pitch && Math.abs(frequency - targetFrequency) < 15) {
+        if (pitch && Math.abs(frequency - targetFrequency) <= 15) {
             document.getElementById('status').textContent = 'ตรงกัน!';
+        } else if (frequency < targetFrequency) {
+            document.getElementById('status').textContent = 'ปรับขึ้น!';
         } else {
-            document.getElementById('status').textContent = 'ปรับเสียงให้ตรง!';
+            document.getElementById('status').textContent = 'ปรับลง!';
         }
-        
+
+        // อัปเดตเข็ม
+        updateNeedle(frequency, targetFrequency);
+
         requestAnimationFrame(getPitch);
     }
     getPitch();
@@ -83,7 +88,7 @@ const standardFrequencies = {
     'D': 146.83,
     'G': 196.00,
     'B': 246.94,
-    'E_high': 369.63,
+    'E_high': 329.63,
 };
 
 const halfStepDownFrequencies = {
@@ -137,6 +142,22 @@ function frequencyToNoteName(frequency) {
     return closestNote ? `${closestNote} (${frequency.toFixed(2)} Hz)` : null;
 }
 
+function updateNeedle(frequency, targetFrequency) {
+    const maxAngle = 90; // กำหนดมุมสูงสุดที่เข็มจะเอียงได้
+    const minAngle = -90;
+
+    if (targetFrequency) {
+        const frequencyDiff = frequency - targetFrequency;
+        const percentageDiff = (frequencyDiff / targetFrequency) * 100;
+
+        // คำนวณมุมเข็มตามเปอร์เซ็นต์ของความถี่ที่เบี่ยงเบน
+        let angle = Math.max(minAngle, Math.min(maxAngle, percentageDiff));
+
+        // อัปเดตการหมุนของเข็ม
+        document.getElementById('needle').style.transform = `rotate(${angle}deg)`;
+    }
+}
+
 document.getElementById('startButton').onclick = () => {
     if (mediaRecorder && mediaRecorder.state === 'recording') {
         mediaRecorder.stop();
@@ -185,4 +206,3 @@ document.getElementById('tuningType').onchange = async function() {
 
     document.getElementById('currentNote').textContent = notes[0];
 };
-

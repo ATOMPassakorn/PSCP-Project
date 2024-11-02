@@ -10,9 +10,9 @@ def get_tuning_notes(tuning_type):
     if tuning_type == "standard":
         return ['E', 'A', 'D', 'G', 'B', 'E_high']
     elif tuning_type == "half_step_down":
-        return ['Eb', 'Ab', 'Db', 'Gb', 'Bb', 'Eb']
+        return ['Eb', 'Ab', 'Db', 'Gb', 'Bb', 'Eb_high']
     elif tuning_type == "full_step_down":
-        return ['D', 'G', 'C', 'F', 'A', 'D']
+        return ['D', 'G', 'C', 'F', 'A', 'D_high']
     else:
         return []
 
