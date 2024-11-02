@@ -66,10 +66,12 @@ function analyze() {
 
         const selectedNote = document.getElementById('noteSelect').value;
         const targetFrequency = noteFrequencies[selectedNote];
-        if (pitch && Math.abs(frequency - targetFrequency) < 15) {
+        if (pitch && Math.abs(frequency - targetFrequency) <= 15) {
             document.getElementById('status').textContent = 'ตรงกัน!';
+        } else if (frequency < targetFrequency) {
+            document.getElementById('status').textContent = 'ปรับขึ้น!';
         } else {
-            document.getElementById('status').textContent = 'ปรับเสียงให้ตรง!';
+            document.getElementById('status').textContent = 'ปรับลง!';
         }
         
         requestAnimationFrame(getPitch);
@@ -103,6 +105,33 @@ const fullStepDownFrequencies = {
     'A': 220.00,
     'D_high': 293.66,
 };
+
+const DropDfrequencies = {
+    'D': 73.42,
+    'A': 110.00,
+    'D': 146.83,
+    'G': 196.00,
+    'B': 246.94,
+    'E_high': 369.63,
+};
+
+const OpenGfrequencies = {
+    'D': 73.42,
+    'G': 98.00,
+    'D': 146.83,
+    'G': 196.00,
+    'B': 246.94,
+    'D_high': 293.66,
+};
+
+const OpenDFrequncie = {
+    'D': 73.42,
+    'A': 110.00,
+    'D': 146.83,
+    'F#': 186.00,
+    'B': 246.94,
+    'D_high': 293.66,
+}
 
 let noteFrequencies = standardFrequencies;
 
@@ -160,6 +189,12 @@ document.getElementById('tuningType').onchange = async function() {
         noteFrequencies = halfStepDownFrequencies;
     } else if (selectedType === "full_step_down") {
         noteFrequencies = fullStepDownFrequencies;
+    } else if (selectedType === "Drop_D") {
+        noteFrequencies = DropDfrequencies;
+    } else if (selectedType === "Open_G") {
+        noteFrequencies = OpenGfrequencies;
+    } else if (selectedType === "Open_D") {
+        noteFrequencies = OpenDFrequncie;
     }
 
     // เปลี่ยนค่าตามประเภทการจูน
@@ -171,6 +206,12 @@ document.getElementById('tuningType').onchange = async function() {
         notes = ['Eb', 'Ab', 'Db', 'Gb', 'Bb', 'Eb_high'];
     } else if (selectedType === "full_step_down"){
         notes = ['D', 'G', 'C', 'F', 'A', 'D_high']
+    } else if (selectedType === "Drop_D"){
+        notes = ['D', 'A', 'D', 'G', 'B', 'E_high']
+    } else if (selectedType === "Open_G"){
+        notes = ['D', 'G', 'D', 'G', 'B', 'D_high']
+    } else if (selectedType === "Open_D"){
+        notes = ['D', 'A', 'D', 'F#', 'B', 'D_high']
     } else {
         // ค่าเริ่มต้น
         notes = Object.keys(noteFrequencies);
