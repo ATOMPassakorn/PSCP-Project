@@ -181,6 +181,12 @@ document.getElementById('tuningType').onchange = async function() {
         noteFrequencies = halfStepDownFrequencies;
     } else if (selectedType === "full_step_down") {
         noteFrequencies = fullStepDownFrequencies;
+    } else if (selectedType === "Drop_D") {
+        noteFrequencies = DropDfrequencies;
+    } else if (selectedType === "Open_G") {
+        noteFrequencies = OpenGfrequencies;
+    } else if (selectedType === "Open_D") {
+        noteFrequencies = OpenDFrequncie;
     }
 
     const response = await fetch('http://127.0.0.1:5000/get_tuning', {
