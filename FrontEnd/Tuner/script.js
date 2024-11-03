@@ -228,3 +228,4 @@ document.getElementById('tuningType').onchange = async function() {
         noteSelect.appendChild(option);
     });
     document.getElementById('currentNote').textContent = notes[0];
+}
