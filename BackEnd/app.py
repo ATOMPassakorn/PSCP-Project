@@ -13,6 +13,12 @@ def get_tuning_notes(tuning_type):
         return ['Eb', 'Ab', 'Db', 'Gb', 'Bb', 'Eb_high']
     elif tuning_type == "full_step_down":
         return ['D', 'G', 'C', 'F', 'A', 'D_high']
+    elif tuning_type == "Drop_D":
+        return ['D', 'A', 'D_high', 'G', 'B', 'E_high']
+    elif tuning_type == "Open_G":
+        return ['D', 'G', 'D_high', 'G', 'B', 'D_high']
+    elif tuning_type == "Open_D":
+        return ['D', 'A', 'D_high', 'F#', 'B', 'D_high']
     else:
         return []
 

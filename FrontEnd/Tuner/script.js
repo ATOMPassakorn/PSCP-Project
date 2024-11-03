@@ -195,7 +195,7 @@ document.getElementById('noteSelect').onchange = function() {
 
 document.getElementById('tuningType').onchange = async function() {
     const selectedType = this.value;
-
+    // กำหนด noteFrequencies ตามประเภทการจูน
     if (selectedType === "standard") {
         noteFrequencies = standardFrequencies;
     } else if (selectedType === "half_step_down") {
@@ -209,35 +209,22 @@ document.getElementById('tuningType').onchange = async function() {
     } else if (selectedType === "Open_D") {
         noteFrequencies = OpenDFrequencies;
     }
-
+    const response = await fetch('http://127.0.0.1:5000/get_tuning', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ tuning: selectedType })
+    });
+    const data = await response.json();
+    const notes = data.notes;
     const noteSelect = document.getElementById('noteSelect');
     noteSelect.innerHTML = '';
-
-    let notes;
-    if (selectedType === "half_step_down") {
-        notes = ['Eb', 'Ab', 'Db', 'Gb', 'Bb', 'Eb_high'];
-    } else if (selectedType === "full_step_down") {
-        notes = ['D', 'G', 'C', 'F', 'A', 'D_high'];
-    } else if (selectedType === "Drop_D") {
-        notes = ['D', 'A', 'D_high', 'G', 'B', 'E_high'];
-    } else if (selectedType === "Open_G") {
-        notes = ['D', 'G', 'D_high', 'G', 'B', 'D_high'];
-    } else if (selectedType === "Open_D") {
-        notes = ['D', 'A', 'D_high', 'F#', 'B', 'D_high'];
-    } else {
-        notes = Object.keys(noteFrequencies);
-    }
-
-    notes.for
-
-
     notes.forEach(note => {
         const option = document.createElement('option');
         option.value = note;
         option.textContent = `${note} (${noteFrequencies[note]} Hz)`;
         noteSelect.appendChild(option);
     });
-
     document.getElementById('currentNote').textContent = notes[0];
 };
-c
