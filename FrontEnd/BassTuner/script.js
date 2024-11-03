@@ -101,7 +101,7 @@ const Drop_DFrequencies = {
     'G': 98.00,
 };
 
-const C_G_D_APfrequencies = {
+const C_G_D_Afrequencies = {
     'C': 32.70,
     'G': 49.00,
     'D': 73.42,
@@ -182,11 +182,11 @@ document.getElementById('tuningType').onchange = async function() {
     } else if (selectedType === "half_step_down") {
         noteFrequencies = halfStepDownFrequencies;
     } else if (selectedType === "C_G_D_A") {
-        noteFrequencies = C_G_D_AFrequencies;
+        noteFrequencies = C_G_D_Afrequencies;
     } else if (selectedType === "Drop_D") {
-        noteFrequencies = DropDfrequencies;
+        noteFrequencies = Drop_DFrequencies;
     } else if (selectedType === "Open_D") {
-        noteFrequencies = OpenDFrequencies;
+        noteFrequencies = Open_Dfrequencies;
     }
     
     const response = await fetch('https://guitar-salmon.onrender.com/get_tuning', {
