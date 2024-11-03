@@ -29,7 +29,7 @@ async function startTuning() {
         formData.append('audio', audioBlob, 'audio.wav');
 
         try {
-            const response = await fetch('http://127.0.0.1:5000/upload', {
+            const response = await fetch('https://guitar-salmon.onrender.com/upload', {
                 method: 'POST',
                 body: formData
             });
@@ -121,8 +121,8 @@ const OpenGfrequencies = {
     'G': 98.00,
     'D_high': 146.83,
     'G_high': 196.00,
-    'B': 246.94,
-    'D_high': 293.66,
+    'D': 146.83,
+    'G': 196.00,
 };
 
 const OpenDFrequencies = {
@@ -209,7 +209,7 @@ document.getElementById('tuningType').onchange = async function() {
     } else if (selectedType === "Open_D") {
         noteFrequencies = OpenDFrequencies;
     }
-    const response = await fetch('http://127.0.0.1:5000/get_tuning', {
+    const response = await fetch('https://guitar-salmon.onrender.com/get_tuning', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -220,6 +220,7 @@ document.getElementById('tuningType').onchange = async function() {
     const notes = data.notes;
     const noteSelect = document.getElementById('noteSelect');
     noteSelect.innerHTML = '';
+
     notes.forEach(note => {
         const option = document.createElement('option');
         option.value = note;
@@ -227,4 +228,3 @@ document.getElementById('tuningType').onchange = async function() {
         noteSelect.appendChild(option);
     });
     document.getElementById('currentNote').textContent = notes[0];
-};
