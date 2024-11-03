@@ -94,21 +94,14 @@ const halfStepDownFrequencies = {
     'Gb': 96.00,
 };
 
-const Drop_DFrequencies = {
+const Drop_D_bassFrequencies = {
     'D': 73.42,
     'A': 55.00,
     'D': 73.42,
     'G': 98.00,
 };
 
-const C_G_D_Afrequencies = {
-    'C': 32.70,
-    'G': 49.00,
-    'D': 73.42,
-    'A': 110.00,
-};
-
-const Open_Dfrequencies = {
+const Open_D_bassfrequencies = {
     'D': 73.42,
     'A': 55.00,
     'D': 73.42,
@@ -181,12 +174,10 @@ document.getElementById('tuningType').onchange = async function() {
         noteFrequencies = standardFrequencies;
     } else if (selectedType === "half_step_down") {
         noteFrequencies = halfStepDownFrequencies;
-    } else if (selectedType === "C_G_D_A") {
-        noteFrequencies = C_G_D_Afrequencies;
     } else if (selectedType === "Drop_D") {
-        noteFrequencies = Drop_DFrequencies;
+        noteFrequencies = Drop_D_bassFrequencies;
     } else if (selectedType === "Open_D") {
-        noteFrequencies = Open_Dfrequencies;
+        noteFrequencies = Open_D_bassfrequencies;
     }
     
     const response = await fetch('https://guitar-salmon.onrender.com/get_tuning', {
@@ -202,10 +193,13 @@ document.getElementById('tuningType').onchange = async function() {
     noteSelect.innerHTML = '';
 
     notes.forEach(note => {
-        const option = document.createElement('option');
-        option.value = note;
-        option.textContent = `${note} (${noteFrequencies[note]} Hz)`;
-        noteSelect.appendChild(option);
+        if (noteFrequencies[note]) {
+            const option = document.createElement('option');
+            option.value = note;
+            option.textContent = `${note} (${noteFrequencies[note]} Hz)`;
+            noteSelect.appendChild(option);
+        }
     });
     document.getElementById('currentNote').textContent = notes[0];
 }
+s
