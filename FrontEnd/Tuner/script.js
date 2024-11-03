@@ -74,9 +74,7 @@ function analyze() {
             document.getElementById('status').textContent = 'ปรับลง!';
         }
 
-        // อัปเดตเข็ม
         updateNeedle(frequency, targetFrequency);
-
         requestAnimationFrame(getPitch);
     }
     getPitch();
@@ -106,6 +104,33 @@ const fullStepDownFrequencies = {
     'C': 130.81,
     'F': 174.61,
     'A': 220.00,
+    'D_high': 293.66,
+};
+
+const DropDfrequencies = {
+    'D': 73.42,
+    'A': 110.00,
+    'D_high': 146.83,
+    'G': 196.00,
+    'B': 246.94,
+    'E_high': 329.63,
+};
+
+const OpenGfrequencies = {
+    'D': 73.42,
+    'G': 98.00,
+    'D_high': 146.83,
+    'G_high': 196.00,
+    'B': 246.94,
+    'D_high': 293.66,
+};
+
+const OpenDFrequencies = {
+    'D': 73.42,
+    'A': 110.00,
+    'D_high': 146.83,
+    'F#': 185.00,
+    'B': 246.94,
     'D_high': 293.66,
 };
 
@@ -143,17 +168,14 @@ function frequencyToNoteName(frequency) {
 }
 
 function updateNeedle(frequency, targetFrequency) {
-    const maxAngle = 90; // กำหนดมุมสูงสุดที่เข็มจะเอียงได้
+    const maxAngle = 90;
     const minAngle = -90;
 
     if (targetFrequency) {
         const frequencyDiff = frequency - targetFrequency;
         const percentageDiff = (frequencyDiff / targetFrequency) * 100;
 
-        // คำนวณมุมเข็มตามเปอร์เซ็นต์ของความถี่ที่เบี่ยงเบน
         let angle = Math.max(minAngle, Math.min(maxAngle, percentageDiff));
-
-        // อัปเดตการหมุนของเข็ม
         document.getElementById('needle').style.transform = `rotate(${angle}deg)`;
     }
 }
@@ -174,7 +196,6 @@ document.getElementById('noteSelect').onchange = function() {
 document.getElementById('tuningType').onchange = async function() {
     const selectedType = this.value;
 
-    // กำหนด noteFrequencies ตามประเภทการจูน
     if (selectedType === "standard") {
         noteFrequencies = standardFrequencies;
     } else if (selectedType === "half_step_down") {
@@ -186,22 +207,29 @@ document.getElementById('tuningType').onchange = async function() {
     } else if (selectedType === "Open_G") {
         noteFrequencies = OpenGfrequencies;
     } else if (selectedType === "Open_D") {
-        noteFrequencies = OpenDFrequncie;
+        noteFrequencies = OpenDFrequencies;
     }
-
-    const response = await fetch('http://127.0.0.1:5000/get_tuning', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ tuning: selectedType })
-    });
-
-    const data = await response.json();
-    const notes = data.notes;
 
     const noteSelect = document.getElementById('noteSelect');
     noteSelect.innerHTML = '';
+
+    let notes;
+    if (selectedType === "half_step_down") {
+        notes = ['Eb', 'Ab', 'Db', 'Gb', 'Bb', 'Eb_high'];
+    } else if (selectedType === "full_step_down") {
+        notes = ['D', 'G', 'C', 'F', 'A', 'D_high'];
+    } else if (selectedType === "Drop_D") {
+        notes = ['D', 'A', 'D_high', 'G', 'B', 'E_high'];
+    } else if (selectedType === "Open_G") {
+        notes = ['D', 'G', 'D_high', 'G', 'B', 'D_high'];
+    } else if (selectedType === "Open_D") {
+        notes = ['D', 'A', 'D_high', 'F#', 'B', 'D_high'];
+    } else {
+        notes = Object.keys(noteFrequencies);
+    }
+
+    notes.for
+
 
     notes.forEach(note => {
         const option = document.createElement('option');
@@ -212,3 +240,4 @@ document.getElementById('tuningType').onchange = async function() {
 
     document.getElementById('currentNote').textContent = notes[0];
 };
+c
