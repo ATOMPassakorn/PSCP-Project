@@ -81,57 +81,38 @@ function analyze() {
 }
 
 const standardFrequencies = {
-    'E': 82.41,
-    'A': 110.00,
-    'D': 146.83,
-    'G': 196.00,
-    'B': 246.94,
-    'E_high': 329.63,
+    'E': 41.20,
+    'A': 55.00,
+    'D': 73.42,
+    'G': 98.00,
 };
 
 const halfStepDownFrequencies = {
-    'Eb': 77.78,
-    'Ab': 103.83,
-    'Db': 138.59,
-    'Gb': 196.00,
-    'Bb': 186.94,
-    'Eb_high': 369.63,
+    'Eb': 38.89,
+    'Ab': 51.91,
+    'Db': 69.29,
+    'Gb': 96.00,
 };
 
-const fullStepDownFrequencies = {
+const Drop_DFrequencies = {
+    'D': 73.42,
+    'A': 55.00,
     'D': 73.42,
     'G': 98.00,
-    'C': 130.81,
-    'F': 174.61,
-    'A': 220.00,
-    'D_high': 293.66,
 };
 
-const DropDfrequencies = {
+const C_G_D_APfrequencies = {
+    'C': 32.70,
+    'G': 49.00,
     'D': 73.42,
     'A': 110.00,
-    'D_high': 146.83,
-    'G': 196.00,
-    'B': 246.94,
-    'E_high': 329.63,
 };
 
-const OpenGfrequencies = {
+const Open_Dfrequencies = {
     'D': 73.42,
-    'G': 98.00,
-    'D_high': 146.83,
-    'G_high': 196.00,
-    'D': 146.83,
-    'G': 196.00,
-};
-
-const OpenDFrequencies = {
+    'A': 55.00,
     'D': 73.42,
-    'A': 110.00,
-    'D_high': 146.83,
-    'F#': 185.00,
-    'B': 246.94,
-    'D_high': 293.66,
+    'F#': 92.50,
 };
 
 let noteFrequencies = standardFrequencies;
@@ -200,15 +181,14 @@ document.getElementById('tuningType').onchange = async function() {
         noteFrequencies = standardFrequencies;
     } else if (selectedType === "half_step_down") {
         noteFrequencies = halfStepDownFrequencies;
-    } else if (selectedType === "full_step_down") {
-        noteFrequencies = fullStepDownFrequencies;
+    } else if (selectedType === "C_G_D_A") {
+        noteFrequencies = C_G_D_AFrequencies;
     } else if (selectedType === "Drop_D") {
         noteFrequencies = DropDfrequencies;
-    } else if (selectedType === "Open_G") {
-        noteFrequencies = OpenGfrequencies;
     } else if (selectedType === "Open_D") {
         noteFrequencies = OpenDFrequencies;
     }
+    
     const response = await fetch('https://guitar-salmon.onrender.com/get_tuning', {
         method: 'POST',
         headers: {
