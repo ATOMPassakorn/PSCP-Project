@@ -66,12 +66,15 @@ function analyze() {
 
         const selectedNote = document.getElementById('noteSelect').value;
         const targetFrequency = noteFrequencies[selectedNote];
-        if (pitch && Math.abs(frequency - targetFrequency) < 15) {
+        if (pitch && Math.abs(frequency - targetFrequency) <= 15) {
             document.getElementById('status').textContent = 'ตรงกัน!';
+        } else if (frequency < targetFrequency) {
+            document.getElementById('status').textContent = 'ปรับขึ้น!';
         } else {
-            document.getElementById('status').textContent = 'ปรับเสียงให้ตรง!';
+            document.getElementById('status').textContent = 'ปรับลง!';
         }
-        
+
+        updateNeedle(frequency, targetFrequency);
         requestAnimationFrame(getPitch);
     }
     getPitch();
@@ -83,7 +86,7 @@ const standardFrequencies = {
     'D': 146.83,
     'G': 196.00,
     'B': 246.94,
-    'E_high': 369.63,
+    'E_high': 329.63,
 };
 
 const halfStepDownFrequencies = {
@@ -101,6 +104,33 @@ const fullStepDownFrequencies = {
     'C': 130.81,
     'F': 174.61,
     'A': 220.00,
+    'D_high': 293.66,
+};
+
+const DropDfrequencies = {
+    'D': 73.42,
+    'A': 110.00,
+    'D_high': 146.83,
+    'G': 196.00,
+    'B': 246.94,
+    'E_high': 329.63,
+};
+
+const OpenGfrequencies = {
+    'D': 73.42,
+    'G': 98.00,
+    'D_high': 146.83,
+    'G_high': 196.00,
+    'D': 146.83,
+    'G': 196.00,
+};
+
+const OpenDFrequencies = {
+    'D': 73.42,
+    'A': 110.00,
+    'D_high': 146.83,
+    'F#': 185.00,
+    'B': 246.94,
     'D_high': 293.66,
 };
 
@@ -137,6 +167,19 @@ function frequencyToNoteName(frequency) {
     return closestNote ? `${closestNote} (${frequency.toFixed(2)} Hz)` : null;
 }
 
+function updateNeedle(frequency, targetFrequency) {
+    const maxAngle = 90;
+    const minAngle = -90;
+
+    if (targetFrequency) {
+        const frequencyDiff = frequency - targetFrequency;
+        const percentageDiff = (frequencyDiff / targetFrequency) * 100;
+
+        let angle = Math.max(minAngle, Math.min(maxAngle, percentageDiff));
+        document.getElementById('needle').style.transform = `rotate(${angle}deg)`;
+    }
+}
+
 document.getElementById('startButton').onclick = () => {
     if (mediaRecorder && mediaRecorder.state === 'recording') {
         mediaRecorder.stop();
@@ -152,7 +195,6 @@ document.getElementById('noteSelect').onchange = function() {
 
 document.getElementById('tuningType').onchange = async function() {
     const selectedType = this.value;
-
     // กำหนด noteFrequencies ตามประเภทการจูน
     if (selectedType === "standard") {
         noteFrequencies = standardFrequencies;
@@ -160,8 +202,13 @@ document.getElementById('tuningType').onchange = async function() {
         noteFrequencies = halfStepDownFrequencies;
     } else if (selectedType === "full_step_down") {
         noteFrequencies = fullStepDownFrequencies;
+    } else if (selectedType === "Drop_D") {
+        noteFrequencies = DropDfrequencies;
+    } else if (selectedType === "Open_G") {
+        noteFrequencies = OpenGfrequencies;
+    } else if (selectedType === "Open_D") {
+        noteFrequencies = OpenDFrequencies;
     }
-
     const response = await fetch('https://guitar-salmon.onrender.com/get_tuning', {
         method: 'POST',
         headers: {
@@ -169,10 +216,8 @@ document.getElementById('tuningType').onchange = async function() {
         },
         body: JSON.stringify({ tuning: selectedType })
     });
-
     const data = await response.json();
     const notes = data.notes;
-
     const noteSelect = document.getElementById('noteSelect');
     noteSelect.innerHTML = '';
 
@@ -182,7 +227,5 @@ document.getElementById('tuningType').onchange = async function() {
         option.textContent = `${note} (${noteFrequencies[note]} Hz)`;
         noteSelect.appendChild(option);
     });
-
     document.getElementById('currentNote').textContent = notes[0];
-};
-
+}
