@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guitar Tuner</title>
     <link rel="icon" type="img/JPG" href="../Homepage/img/Logo.JPG">
-    <link rel="stylesheet" href="../Tuner/styles.css">
+    <link rel="stylesheet" href="../BassTuner/styles.css">
     <link href='https://fonts.googleapis.com/css?family=Mouse Memoirs' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
 </head>
@@ -19,38 +19,32 @@
         <label><img src="../Homepage/img/Logo.JPG" alt=""></label>
         <ul>
             <li><a href="../Homepage/index.html">Home</a></li>
-            <li><a href="../Tuner/tuner.html">Guitar Tuner</a></li>
-            <li><a href="#">Bass Tuner</a></li>
+            <li><a href="../GuitarTuner/guitar.html">Guitar Tuner</a></li>
+            <li><a href="../BassTuner/bass.html">Bass Tuner</a></li>
         </ul>
     </nav>
     <button class="button" id="startButton">Start Tuning</button>
-    <p>Guitar Tuner</p>
+    <p>Bass Tuner</p>
     <label for="tuningType">Choose Tuning Type:</label>
     <select id="tuningType">
         <option value="standard">Standard</option>
         <option value="half_step_down">Half Step Down</option>
-        <option value="full_step_down">Full Step Down</option>
-        <option value="Drop_D">Drop D</option>
-        <option value="Open_G">Open G</option>
-        <option value="Open_D">Open D</option>
+        <option value="Drop_D_bass">Drop D bass</option>
+        <option value="Open_D_bass">Open D bass</option>
     </select>
     
     <label for="noteSelect">Choose Note :</label>
     <select id="noteSelect">
-        <option value="E">E (82.41 Hz)</option>
-        <option value="A">A (110.00 Hz)</option>
-        <option value="D">D (146.83 Hz)</option>
-        <option value="G">G (196.00 Hz)</option>
-        <option value="B">B (246.94 Hz)</option>
-        <option value="E_high">E (329.63 Hz)</option>
+        <option value="E">E (41.20 Hz)</option>
+        <option value="A">A (55.00 Hz)</option>
+        <option value="D">D (73.42 Hz)</option>
+        <option value="G">G (98.00 Hz)</option>
     </select>
     
     <div id="selectedNote">Tuning : <span id="currentNote">E</span></div>
     <div id="output">Now : <span id="note">-</span></div>
     <div id="tuningStatus">Status : <span id="status">-</span></div>
-    <div class="needle-container">
-        <div id="needle" class="needle"></div>
-    </div>
+    
     <footer>
         <div class="footer-col">
             <h4>teams</h4>
@@ -63,6 +57,6 @@
             </ul>
         </div>
     </footer>
-    <script src="../Tuner/script.js"></script>
+    <script src="../BassTuner/script.js"></script>
 </body>
 </html>
