@@ -19,23 +19,22 @@ a:hover {
 }
 
 .previous {
-  background-color: #f1f1f1;
-  color: black;
-  position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
+    background-color: #f1f1f1;
+    color: black;
+    position: absolute;
+      left: 6px;
+      top: 50%;
+      transform: translateY(-50%);
 }
-
+  
 .next {
-  background-color: #000000;
-  color: white;
-  position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
+    background-color: #000000;
+    color: white;
+    position: absolute;
+        right: 5px;
+        top: 50%;
+        transform: translateY(-50%);
 }
-
 .round {
   border-radius: 50%;
 }
