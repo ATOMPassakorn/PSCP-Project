@@ -265,10 +265,10 @@ footer ul li a{
 
     footer ul li a{
         display: block;
-        margin: 50px 0;
-        line-height: 30px;
+        margin: 10px 0;
+        line-height: 20px;
     }
     footer ul li a{
-        font-size: 20px;
+        font-size: 10px;
     }
 }
