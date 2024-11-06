@@ -121,6 +121,7 @@ div#output,div#tuningStatus,div#selectedNote{
 img {
     display: block;
     margin: auto;
+    border-radius: 50%;
 }
 
 #needle {
