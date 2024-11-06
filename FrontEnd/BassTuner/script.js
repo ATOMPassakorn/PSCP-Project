@@ -4,6 +4,8 @@ let microphone;
 let mediaRecorder;
 let audioChunks = [];
 let isAnalyzing = false;
+let matchSound = new Audio('../GuitarTuner/effect/ding.wav');
+let PlayedSound = false;
 
 async function startTuning() {
     audioContext = new (window.AudioContext || window.webkitAudioContext)();
@@ -29,7 +31,7 @@ async function startTuning() {
         formData.append('audio', audioBlob, 'audio.wav');
 
         try {
-            const response = await fetch('https://guitar-salmon.onrender.com/upload', {
+            const response = await fetch('http://127.0.0.1:5000/upload', {
                 method: 'POST',
                 body: formData
             });
@@ -68,10 +70,13 @@ function analyze() {
         const targetFrequency = noteFrequencies[selectedNote];
         if (pitch && Math.abs(frequency - targetFrequency) <= 15) {
             document.getElementById('status').textContent = 'ตรงกัน!';
-        } else if (frequency < targetFrequency) {
-            document.getElementById('status').textContent = 'ปรับขึ้น!';
+            if (!PlayedSound) {
+                matchSound.play();
+                PlayedSound = true;
+            }
         } else {
-            document.getElementById('status').textContent = 'ปรับลง!';
+            document.getElementById('status').textContent = frequency < targetFrequency ? 'ปรับขึ้น!' : 'ปรับลง!';
+            PlayedSound = false;
         }
 
         updateNeedle(frequency, targetFrequency);
@@ -80,35 +85,42 @@ function analyze() {
     getPitch();
 }
 
-const standardFrequencies = {
-    'E': 41.20,
-    'A': 55.00,
-    'D': 73.42,
-    'G': 98.00,
+const Bass_StandardFrequencies = {
+    'E1': 41.20,
+    'A1': 55.00,
+    'D2': 73.42,
+    'G2': 98.00,
 };
 
-const halfStepDownFrequencies = {
-    'Eb': 38.89,
-    'Ab': 51.91,
-    'Db': 69.29,
-    'Gb': 96.00,
+const Bass_HalfStepDownFrequencies = {
+    'Eb1': 38.89,
+    'Ab1': 51.91,
+    'Db2': 69.30,
+    'Gb2': 92.50,
 };
 
-const Drop_D_bassFrequencies = {
-    'D': 73.42,
-    'A': 55.00,
-    'D': 73.42,
-    'G': 98.00,
+const Bass_WholeStepDownFrequencies = {
+    'D1': 36.71,
+    'G1': 49.00,
+    'C2': 65.41,
+    'F2': 87.31
 };
 
-const Open_D_bassfrequencies = {
-    'D': 73.42,
-    'A': 55.00,
-    'D': 73.42,
-    'F#': 92.50,
+const Bass_Drop_DFrequencies = {
+    'D1': 36.71,
+    'A1': 55.00,
+    'D2': 73.42,
+    'G2': 98.00,
 };
 
-let noteFrequencies = standardFrequencies;
+const Bass_Drop_Cfrequencies = {
+    'C1': 32.70,
+    'G1': 49.00,
+    'C2': 65.41,
+    'F2': 87.31,
+};
+
+let noteFrequencies = Bass_StandardFrequencies;
 
 function getPitchFromData(dataArray) {
     let maxIndex = -1;
@@ -169,18 +181,18 @@ document.getElementById('noteSelect').onchange = function() {
 
 document.getElementById('tuningType').onchange = async function() {
     const selectedType = this.value;
-    // กำหนด noteFrequencies ตามประเภทการจูน
-    if (selectedType === "standard") {
-        noteFrequencies = standardFrequencies;
-    } else if (selectedType === "half_step_down") {
-        noteFrequencies = halfStepDownFrequencies;
-    } else if (selectedType === "Drop_D") {
-        noteFrequencies = Drop_D_bassFrequencies;
-    } else if (selectedType === "Open_D") {
-        noteFrequencies = Open_D_bassfrequencies;
+    if (selectedType === "Bass_Standard") {
+        noteFrequencies = Bass_StandardFrequencies;
+    } else if (selectedType === "Bass_Half_step_down") {
+        noteFrequencies = Bass_HalfStepDownFrequencies;
+    } else if (selectedType === "Bass_Whole_step_down") {
+            noteFrequencies = Bass_WholeStepDownFrequencies;
+    } else if (selectedType === "Bass_Drop_D") {
+        noteFrequencies = Bass_Drop_DFrequencies;
+    } else if (selectedType === "Bass_Drop_C") {
+        noteFrequencies = Bass_Drop_Cfrequencies;
     }
-    
-    const response = await fetch('https://guitar-salmon.onrender.com/get_tuning', {
+    const response = await fetch('http://127.0.0.1:5000/get_tuning', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -193,13 +205,10 @@ document.getElementById('tuningType').onchange = async function() {
     noteSelect.innerHTML = '';
 
     notes.forEach(note => {
-        if (noteFrequencies[note]) {
-            const option = document.createElement('option');
-            option.value = note;
-            option.textContent = `${note} (${noteFrequencies[note]} Hz)`;
-            noteSelect.appendChild(option);
-        }
+        const option = document.createElement('option');
+        option.value = note;
+        option.textContent = `${note} (${noteFrequencies[note]} Hz)`;
+        noteSelect.appendChild(option);
     });
     document.getElementById('currentNote').textContent = notes[0];
 }
-s

@@ -39,11 +39,6 @@ label img {
     transition: all 0.5s ease;
 }
 
-img {
-    display: block;
-    margin: auto;
-    border-radius: 50%;
-}
 nav ul{
     float: right;
     margin-right: 20px;
@@ -61,7 +56,6 @@ nav ul li a{
     padding: 7px 13px;
     border-radius: 3px;
     text-transform: uppercase;
-    text-decoration: none;
 }
 
 nav a.active,nav a:hover{
@@ -87,7 +81,9 @@ nav a.active,nav a:hover{
     font-size: 28px;
     font-weight: bold;
     display: block;
-    margin: auto;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
     background: #B10000;
     width: 180px;
     padding: 20px;
@@ -97,9 +93,7 @@ nav a.active,nav a:hover{
     cursor: pointer;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     margin-top: 1%;
-    font-family: "Mouse Memoirs";
 }
-
 
 .button:hover,.button:focus,.button:active {
     box-shadow: 0 0 20px rgba(0,0,0,0.5);
@@ -124,6 +118,12 @@ div#output,div#tuningStatus,div#selectedNote{
     color: black;
     font-size: 50px;
 }
+
+#status{
+    font-family: "Mitr";
+    font-weight: 400;
+}
+
 img {
     display: block;
     margin: auto;
@@ -146,6 +146,7 @@ img {
     border-radius: 5px;
     position: relative;
     margin: 0 auto;
+    margin-bottom: 10px;
 }
 
 footer{

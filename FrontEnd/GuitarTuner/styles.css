@@ -117,6 +117,12 @@ div#output,div#tuningStatus,div#selectedNote{
     color: black;
     font-size: 50px;
 }
+
+#status{
+    font-family: "Mitr";
+    font-weight: 400;
+}
+
 img {
     display: block;
     margin: auto;
@@ -139,6 +145,7 @@ img {
     border-radius: 5px;
     position: relative;
     margin: 0 auto;
+    margin-bottom: 10px;
 }
 
 footer{

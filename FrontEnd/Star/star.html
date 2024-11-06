@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guitar Salmon</title>
-    <link rel="icon" type="img/JPG" href="img/Logo.JPG">
+    <link rel="icon" type="img/JPG" href="../Homepage/img/Logo.JPG">
     <link href='https://fonts.googleapis.com/css?family=Mouse Memoirs' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../Star/styles.css">
 </head>
 <body>
     <nav>
@@ -38,7 +38,7 @@
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <div class="carousel-caption d-none d-md-block">
-                    <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal1" onclick="fetchData()">
+                    <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal1" onclick="fetchData('/get_data1')">
                         Cliff Burton
                     </button>
                     <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -49,7 +49,7 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <p id="output" style="color: black;"></p>
+                                    <p class="output" style="color: black;"></p>
                                     <a href="https://www.loudersound.com/features/cliff-burton-the-story-of-the-ultimate-metalhead" target="_blank" style="text-decoration: none;">
                                         <h1 style="color: black;">Historical</h1>
                                     </a>
@@ -63,7 +63,7 @@
 
             <div class="carousel-item">
                 <div class="carousel-caption d-none d-md-block">
-                    <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal2" onclick="fetchData()">
+                    <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal2" onclick="fetchData('/get_data2')">
                         John Mayer's
                     </button>
                     <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -74,7 +74,7 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <p id="output" style="color: black;"></p>
+                                    <p class="output" style="color: black;"></p>
                                     <a href="https://nitinbharadwaj.medium.com/john-mayer-the-last-guitar-hero-c7b17563c465" target="_blank" style="text-decoration: none;">
                                         <h1 style="color: black;">Historical</h1>
                                     </a>
@@ -83,12 +83,12 @@
                         </div>
                     </div>
                 </div>
-                <video src="img/John Mayer's .mp4" class="d-block w-50 mx-auto" id="video2" controls></video>
+                <video src="img/John Mayer's .mp4" class="d-block w-50 mx-auto" id="video2" controls></video>
             </div>
 
             <div class="carousel-item">
                 <div class="carousel-caption d-none d-md-block">
-                    <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal3" onclick="fetchData()">
+                    <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal3" onclick="fetchData('/get_data3')">
                         Kurt Cobain
                     </button>
                     <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -99,7 +99,7 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <p id="output" style="color: black;"></p>
+                                    <p class="output" style="color: black;"></p>
                                     <a href="https://www.historylink.org/file/20421" target="_blank" style="text-decoration: none;">
                                         <h1 style="color: black;">Historical</h1>
                                     </a>

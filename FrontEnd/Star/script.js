@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // เล่นวิดีโอในสไลด์ที่แอคทีฟ
     carousel.addEventListener('slid.bs.carousel', function (event) {
         const activeIndex = event.to;
         const activeVideo = videos[activeIndex];

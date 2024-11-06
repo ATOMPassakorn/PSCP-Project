@@ -4,6 +4,8 @@ let microphone;
 let mediaRecorder;
 let audioChunks = [];
 let isAnalyzing = false;
+let matchSound = new Audio('../GuitarTuner/effect/ding.wav');
+let PlayedSound = false;
 
 async function startTuning() {
     audioContext = new (window.AudioContext || window.webkitAudioContext)();
@@ -29,7 +31,7 @@ async function startTuning() {
         formData.append('audio', audioBlob, 'audio.wav');
 
         try {
-            const response = await fetch('https://guitar-salmon.onrender.com/upload', {
+            const response = await fetch('http://127.0.0.1:5000/upload', {
                 method: 'POST',
                 body: formData
             });
@@ -66,12 +68,15 @@ function analyze() {
 
         const selectedNote = document.getElementById('noteSelect').value;
         const targetFrequency = noteFrequencies[selectedNote];
-        if (pitch && Math.abs(frequency - targetFrequency) <= 15) {
+        if (pitch && Math.abs(frequency - targetFrequency) <= 10) {
             document.getElementById('status').textContent = 'ตรงกัน!';
-        } else if (frequency < targetFrequency) {
-            document.getElementById('status').textContent = 'ปรับขึ้น!';
+            if (!PlayedSound) {
+                matchSound.play();
+                PlayedSound = true;
+            }
         } else {
-            document.getElementById('status').textContent = 'ปรับลง!';
+            document.getElementById('status').textContent = frequency < targetFrequency ? 'ปรับขึ้น!' : 'ปรับลง!';
+            PlayedSound = false;
         }
 
         updateNeedle(frequency, targetFrequency);
@@ -80,61 +85,106 @@ function analyze() {
     getPitch();
 }
 
-const standardFrequencies = {
-    'E': 82.41,
-    'A': 110.00,
-    'D': 146.83,
-    'G': 196.00,
-    'B': 246.94,
-    'E_high': 329.63,
+const Guitar_StandardFrequencies = {
+    'E2': 82.41,
+    'A2': 110.00,
+    'D3': 146.83,
+    'G3': 196.00,
+    'B3': 246.94,
+    'E4': 329.63,
 };
 
-const halfStepDownFrequencies = {
-    'Eb': 77.78,
-    'Ab': 103.83,
-    'Db': 138.59,
-    'Gb': 196.00,
-    'Bb': 186.94,
-    'Eb_high': 369.63,
+const Guitar_HalfStepDownFrequencies = {
+    'Eb2': 77.78,
+    'Ab2': 103.83,
+    'Db3': 138.59,
+    'Gb3': 185.00,
+    'Bb3': 233.08,
+    'Eb4': 311.13,
 };
 
-const fullStepDownFrequencies = {
-    'D': 73.42,
-    'G': 98.00,
-    'C': 130.81,
-    'F': 174.61,
-    'A': 220.00,
-    'D_high': 293.66,
+const Guitar_WholeStepDownFrequencies = {
+    'D2': 73.42,
+    'G2': 98.00,
+    'C3': 130.81,
+    'F3': 174.61,
+    'A3': 220.00,
+    'D4': 293.66,
 };
 
-const DropDfrequencies = {
-    'D': 73.42,
-    'A': 110.00,
-    'D_high': 146.83,
-    'G': 196.00,
-    'B': 246.94,
-    'E_high': 329.63,
+const Guitar_DropDfrequencies = {
+    'D2': 73.42,
+    'A2': 110.00,
+    'D3': 146.83,
+    'G3': 196.00,
+    'B3': 246.94,
+    'E4': 329.63,
 };
 
-const OpenGfrequencies = {
-    'D': 73.42,
-    'G': 98.00,
-    'D_high': 146.83,
-    'G_high': 196.00,
-    'D': 146.83,
-    'G': 196.00,
+const Guitar_DropCfrequencies = {
+    'C2': 65.41,
+    'G2': 98.00,
+    'C3': 130.81,
+    'F3': 174.61,
+    'A3': 220.00,
+    'D4': 293.66,
 };
 
-const OpenDFrequencies = {
-    'D': 73.42,
-    'A': 110.00,
-    'D_high': 146.83,
-    'F#': 185.00,
-    'B': 246.94,
-    'D_high': 293.66,
+const Guitar_OpenCfrequencies = {
+    'C2': 65.41,
+    'G2': 98.00,
+    'C3': 130.81,
+    'G3': 196.00,
+    'C4': 261.63,
+    'E4': 329.63,
 };
 
-let noteFrequencies = standardFrequencies;
+const Guitar_OpenDFrequencies = {
+    'D2': 73.42,
+    'A2': 110.00,
+    'D3': 146.83,
+    'F#3': 185.00,
+    'A3': 220.00,
+    'D4': 293.66,
+};
+
+const Guitar_OpenEFrequencies = {
+    'E2': 82.41,
+    'B2': 123.47,
+    'E3': 164.81,
+    'G#3': 207.65,
+    'B3': 246.94,
+    'E4': 329.63,
+};
+
+const Guitar_OpenFFrequencies = {
+    'C2': 65.41,
+    'F2': 87.31,
+    'C3': 130.81,
+    'F3': 174.61,
+    'A3': 220.00,
+    'F4': 349.23,
+};
+
+const Guitar_OpenAFrequencies = {
+    'E2': 82.41,
+    'A2': 110.00,
+    'C#3': 138.59,
+    'E3': 164.81,
+    'A3': 220.00,
+    'E4': 329.63,
+};
+
+const Guitar_OpenBFrequencies = {
+    'B1': 61.74,
+    'F#2': 92.50,
+    'B2': 123.47,
+    'F#3': 185.00,
+    'B3': 246.94,
+    'D#4': 311.13,
+};
+
+let noteFrequencies = Guitar_StandardFrequencies;
 
 function getPitchFromData(dataArray) {
     let maxIndex = -1;
@@ -195,21 +245,30 @@ document.getElementById('noteSelect').onchange = function() {
 
 document.getElementById('tuningType').onchange = async function() {
     const selectedType = this.value;
-    // กำหนด noteFrequencies ตามประเภทการจูน
-    if (selectedType === "standard") {
-        noteFrequencies = standardFrequencies;
-    } else if (selectedType === "half_step_down") {
-        noteFrequencies = halfStepDownFrequencies;
-    } else if (selectedType === "full_step_down") {
-        noteFrequencies = fullStepDownFrequencies;
-    } else if (selectedType === "Drop_D") {
-        noteFrequencies = DropDfrequencies;
-    } else if (selectedType === "Open_G") {
-        noteFrequencies = OpenGfrequencies;
-    } else if (selectedType === "Open_D") {
-        noteFrequencies = OpenDFrequencies;
+    if (selectedType === "Guitar_Standard") {
+        noteFrequencies = Guitar_StandardFrequencies;
+    } else if (selectedType === "Guitar_Half_step_down") {
+        noteFrequencies = Guitar_HalfStepDownFrequencies;
+    } else if (selectedType === "Guitar_Whole_step_down") {
+        noteFrequencies = Guitar_WholeStepDownFrequencies;
+    } else if (selectedType === "Guitar_Drop_D") {
+        noteFrequencies = Guitar_DropDfrequencies;
+    } else if (selectedType === "Guitar_Drop_C") {
+        noteFrequencies = Guitar_DropCfrequencies;
+    } else if (selectedType === "Guitar_Open_C") {
+        noteFrequencies = Guitar_OpenCfrequencies;
+    } else if (selectedType === "Guitar_Open_D") {
+        noteFrequencies = Guitar_OpenDFrequencies;
+    } else if (selectedType === "Guitar_Open_E") {
+        noteFrequencies = Guitar_OpenEFrequencies;
+    } else if (selectedType === "Guitar_Open_F") {
+        noteFrequencies = Guitar_OpenFFrequencies;
+    } else if (selectedType === "Guitar_Open_A") {
+        noteFrequencies = Guitar_OpenAFrequencies;
+    } else if (selectedType === "Guitar_Open_B") {
+        noteFrequencies = Guitar_OpenBFrequencies;
     }
-    const response = await fetch('https://guitar-salmon.onrender.com/get_tuning', {
+    const response = await fetch('http://127.0.0.1:5000/get_tuning', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

@@ -7,6 +7,7 @@
     <link rel="icon" type="img/JPG" href="../Homepage/img/Logo.JPG">
     <link rel="stylesheet" href="../GuitarTuner/styles.css">
     <link href='https://fonts.googleapis.com/css?family=Mouse Memoirs' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Mitr:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
 </head>
 <body>
@@ -28,25 +29,30 @@
     <p>Guitar Tuner</p>
     <label for="tuningType">Choose Tuning Type:</label>
     <select id="tuningType">
-        <option value="standard">Standard</option>
-        <option value="half_step_down">Half Step Down</option>
-        <option value="full_step_down">Full Step Down</option>
-        <option value="Drop_D">Drop D</option>
-        <option value="Open_G">Open G</option>
-        <option value="Open_D">Open D</option>
+        <option value="Guitar_Standard">Standard</option>
+        <option value="Guitar_Half_step_down">Half Step Down</option>
+        <option value="Guitar_Whole_step_down">Full Step Down</option>
+        <option value="Guitar_Drop_D">Drop D</option>
+        <option value="Guitar_Drop_C">Drop C</option>
+        <option value="Guitar_Open_C">Open C</option>
+        <option value="Guitar_Open_D">Open D</option>
+        <option value="Guitar_Open_E">Open E</option>
+        <option value="Guitar_Open_F">Open F</option>
+        <option value="Guitar_Open_A">Open A</option>
+        <option value="Guitar_Open_B">Open B</option>
     </select>
     
     <label for="noteSelect">Choose Note :</label>
     <select id="noteSelect">
-        <option value="E">E (82.41 Hz)</option>
-        <option value="A">A (110.00 Hz)</option>
-        <option value="D">D (146.83 Hz)</option>
-        <option value="G">G (196.00 Hz)</option>
-        <option value="B">B (246.94 Hz)</option>
-        <option value="E_high">E (329.63 Hz)</option>
+        <option value="E2">E2 (82.41 Hz)</option>
+        <option value="A2">A2 (110.00 Hz)</option>
+        <option value="D3">D3 (146.83 Hz)</option>
+        <option value="G3">G3 (196.00 Hz)</option>
+        <option value="B4">B3 (246.94 Hz)</option>
+        <option value="E4">E4 (329.63 Hz)</option>
     </select>
     
-    <div id="selectedNote">Tuning : <span id="currentNote">E</span></div>
+    <div id="selectedNote">Tuning : <span id="currentNote">E2</span></div>
     <div id="output">Now : <span id="note">-</span></div>
     <div id="tuningStatus">Status : <span id="status">-</span></div>
     <div class="needle-container">
