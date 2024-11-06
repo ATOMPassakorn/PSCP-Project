@@ -121,7 +121,7 @@ footer{
     flex-wrap: wrap;
     margin-top: auto;
     background-color: #B10000;
-    padding: 10px 10%;
+    padding: 5px 10%;
 }
 
 footer ul{
@@ -140,13 +140,14 @@ footer div ul{
 footer div ul{
     display: flex;
     margin-right: 10px;
+    margin-bottom: 0px;
 }
 
 .footer-col h4{
     position: relative;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     font-weight: 400;
-    font-size: 32px;
+    font-size: 28px;
     color: white;
     text-transform: capitalize;
 }
@@ -162,7 +163,7 @@ footer div ul{
 }
 
 footer li.name {
-    margin: 0 10px;
+    margin: 0 5px;
 }
 
 .name {
@@ -170,13 +171,13 @@ footer li.name {
 }
 
 footer ul li:not(:last-child){
-    margin-bottom: 8px;
+    margin-bottom: 4px;
 }
 
 footer ul li a{
     display: inline-block;
-    padding-right: 10px;
-    font-size: 29px;
+    padding-right: 5px;
+    font-size: 26px;
     text-transform: capitalize;
     color: white;
     text-decoration: none;
