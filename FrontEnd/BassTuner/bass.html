@@ -25,25 +25,34 @@
             <li><a href="../Star/star.html">Star</a></li>
         </ul>
     </nav>
-    <button class="button" id="startButton">Start Tuning</button>
+    <!-- <button class="button" id="startButton">Start Tuning</button> -->
     <p>Bass Tuner</p>
-    <label for="tuningType">Choose Tuning Type:</label>
-    <select id="tuningType">
-        <option value="Bass_Standard">Standard</option>
-        <option value="Bass_Half_step_down">Half Step Down</option>
-        <option value="Bass_Whole_step_down">Whole Step Down</option>
-        <option value="Bass_Drop_D">Drop D</option>
-        <option value="Bass_Drop_C">Drop C</option>
-    </select>
-    
-    <label for="noteSelect">Choose Note :</label>
-    <select id="noteSelect">
-        <option value="E1">E1 (41.20 Hz)</option>
-        <option value="A1">A1 (55.00 Hz)</option>
-        <option value="D2">D2 (73.42 Hz)</option>
-        <option value="G2">G2 (98.00 Hz)</option>
-    </select>
-    
+    <div id="main-container">
+        <div class="select-container">
+            <label class= "select-label" for="tuningType">Choose Tuning:</label>
+            <div id="select-container-tuningType" class="select-body">
+                <select class="tuningType" id="tuningType">
+                    <option value="Bass_Standard">Standard</option>
+                    <option value="Bass_Half_step_down">Half Step Down</option>
+                    <option value="Bass_Whole_step_down">Whole Step Down</option>
+                    <option value="Bass_Drop_D">Drop D</option>
+                    <option value="Bass_Drop_C">Drop C</option>
+                </select>
+            </div>
+        </div>
+        <div class="select-container">
+            <label class= "select-label" for="noteSelect">Choose Note :</label>
+            <div id="select-container-tuningType" class="select-body">
+                <select class="noteSelect" id="noteSelect">
+                    <option value="E1">E1 (41.20 Hz)</option>
+                    <option value="A1">A1 (55.00 Hz)</option>
+                    <option value="D2">D2 (73.42 Hz)</option>
+                    <option value="G2">G2 (98.00 Hz)</option>
+                </select>
+            </div>
+        </div>
+    </div>  
+    <button class="button" id="startButton">Start Tuning</button>
     <div id="selectedNote">Tuning : <span id="currentNote">E1</span></div>
     <div id="output">Now : <span id="note">-</span></div>
     <div id="tuningStatus">Status : <span id="status">-</span></div>

@@ -25,33 +25,42 @@
             <li><a href="../Star/star.html">Star</a></li>
         </ul>
     </nav>
-    <button class="button" id="startButton">Start Tuning</button>
+    <!-- <button class="button" id="startButton">Start Tuning</button> -->
     <p>Guitar Tuner</p>
-    <label for="tuningType">Choose Tuning Type:</label>
-    <select id="tuningType">
-        <option value="Guitar_Standard">Standard</option>
-        <option value="Guitar_Half_step_down">Half Step Down</option>
-        <option value="Guitar_Whole_step_down">Full Step Down</option>
-        <option value="Guitar_Drop_D">Drop D</option>
-        <option value="Guitar_Drop_C">Drop C</option>
-        <option value="Guitar_Open_C">Open C</option>
-        <option value="Guitar_Open_D">Open D</option>
-        <option value="Guitar_Open_E">Open E</option>
-        <option value="Guitar_Open_F">Open F</option>
-        <option value="Guitar_Open_A">Open A</option>
-        <option value="Guitar_Open_B">Open B</option>
-    </select>
-    
-    <label for="noteSelect">Choose Note :</label>
-    <select id="noteSelect">
-        <option value="E2">E2 (82.41 Hz)</option>
-        <option value="A2">A2 (110.00 Hz)</option>
-        <option value="D3">D3 (146.83 Hz)</option>
-        <option value="G3">G3 (196.00 Hz)</option>
-        <option value="B4">B3 (246.94 Hz)</option>
-        <option value="E4">E4 (329.63 Hz)</option>
-    </select>
-    
+    <div id="main-container">
+        <div class="select-container">
+            <label class= "select-label" for="tuningType">Choose Tuning:</label>
+            <div id="select-container-tuningType" class="select-body">
+                <select class="tuningType" id="tuningType">
+                    <option value="Guitar_Standard">Standard</option>
+                    <option value="Guitar_Half_step_down">Half Step Down</option>
+                    <option value="Guitar_Whole_step_down">Full Step Down</option>
+                    <option value="Guitar_Drop_D">Drop D</option>
+                    <option value="Guitar_Drop_C">Drop C</option>
+                    <option value="Guitar_Open_C">Open C</option>
+                    <option value="Guitar_Open_D">Open D</option>
+                    <option value="Guitar_Open_E">Open E</option>
+                    <option value="Guitar_Open_F">Open F</option>
+                    <option value="Guitar_Open_A">Open A</option>
+                    <option value="Guitar_Open_B">Open B</option>
+                </select>
+            </div>
+        </div>
+        <div class="select-container">
+            <label class= "select-label" for="noteSelect">Choose Note :</label>
+            <div id="select-container-tuningType" class="select-body">
+                <select class="noteSelect" id="noteSelect">
+                    <option value="E2">E2 (82.41 Hz)</option>
+                    <option value="A2">A2 (110.00 Hz)</option>
+                    <option value="D3">D3 (146.83 Hz)</option>
+                    <option value="G3">G3 (196.00 Hz)</option>
+                    <option value="B4">B3 (246.94 Hz)</option>
+                    <option value="E4">E4 (329.63 Hz)</option>
+                </select>
+            </div>
+        </div>
+    </div>  
+    <button class="button" id="startButton">Start Tuning</button>
     <div id="selectedNote">Tuning : <span id="currentNote">E2</span></div>
     <div id="output">Now : <span id="note">-</span></div>
     <div id="tuningStatus">Status : <span id="status">-</span></div>
