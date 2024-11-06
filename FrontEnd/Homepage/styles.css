@@ -104,10 +104,10 @@ nav a.active,nav a:hover{
 }
 
 p{
-    text-align: center;
+    text-align: right;
     color: black;
     font-size: 100px;
-    margin: auto;
+    margin: 300px;
 }
 
 img {
