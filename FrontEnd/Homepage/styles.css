@@ -107,11 +107,13 @@ p{
     text-align: center;
     color: black;
     font-size: 100px;
+    margin: auto;
 }
 
 img {
     display: block;
     margin: auto;
+    border-radius: 50%;
 }
 
 footer{
