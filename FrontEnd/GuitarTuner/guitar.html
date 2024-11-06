@@ -24,8 +24,8 @@
         </ul>
     </nav>
     <button class="button" id="startButton">Start Tuning</button>
-    <p>Guitar Tuner</p>
-    <label for="tuningType">Choose Tuning Type:</label>
+    <p id="name">Guitar Tuner</p>
+    <!-- <label for="tuningType">Choose Tuning Type:</label>
     <select id="tuningType">
         <option value="standard">Standard</option>
         <option value="half_step_down">Half Step Down</option>
@@ -33,9 +33,39 @@
         <option value="Drop_D">Drop D</option>
         <option value="Open_G">Open G</option>
         <option value="Open_D">Open D</option>
-    </select>
-    
-    <label for="noteSelect">Choose Note :</label>
+    </select> -->
+    <div class="choosetuning">
+
+        <div class="selector">
+            <div id="selectField">
+            <p id="selectText">Choose Tuning Type</p>
+            <img src="../Star/img/arrow.png" id="arrowicon">
+            </div>
+
+            <ul id="list" class="hide">
+                <li class="option">
+                    <p value="half_step_down">Standard</p>
+                </li>
+                <li class="option">
+                    <p value="Half Step Down">Half Step Down</p>
+                </li>
+                <li class="option">
+                    <p value="Full Step Down">Full Step Down</p>
+                </li>
+                <li class="option">
+                    <p value="Drop D">Drop D</p>
+                </li>
+                <li class="option">
+                    <p value="Open G">Open G</p>
+                </li>
+                <li class="option">
+                    <p value="Open D">Open D</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- <label for="noteSelect">Choose Note :</label>
     <select id="noteSelect">
         <option value="E">E (82.41 Hz)</option>
         <option value="A">A (110.00 Hz)</option>
@@ -43,7 +73,37 @@
         <option value="G">G (196.00 Hz)</option>
         <option value="B">B (246.94 Hz)</option>
         <option value="E_high">E (329.63 Hz)</option>
-    </select>
+    </select> -->
+    <div class="ChooseNote">
+
+        <div class="selector">
+            <div id="selectField2">
+            <p id="selectText2">Choose Note</p>
+            <img src="../Star/img/arrow.png" id="arrowicon2">
+            </div>
+
+            <ul id="list2" class="hide2">
+                <li class="option2">
+                    <p value="E">E (82.41 Hz)</p>
+                </li>
+                <li class="option2">
+                    <p value="A">A (110.00 Hz)</p>
+                </li>
+                <li class="option2">
+                    <p value="D">D (146.83 Hz)</p>
+                </li>
+                <li class="option2">
+                    <p value="G">G (196.00 Hz)</p>
+                </li>
+                <li class="option2">
+                    <p value="B">B (246.94 Hz)</p>
+                </li>
+                <li class="option2">
+                    <p value="E_high">E (329.63 Hz)</p>
+                </li>
+            </ul>
+        </div>
+    </div>
     
     <div id="selectedNote">Tuning : <span id="currentNote">E</span></div>
     <div id="output">Now : <span id="note">-</span></div>
@@ -64,5 +124,42 @@
         </div>
     </footer>
     <script src="../GuitarTuner/script.js"></script>
+    <script>
+        var selectField = document.getElementById("selectField");
+        var selectText = document.getElementById("selectText");
+        var option = document.getElementsByClassName("option");
+        var list = document.getElementById("list");
+        var arrowicon = document.getElementById("arrowicon");
+
+        selectField.onclick = function(){
+            list.classList.toggle("hide");
+            arrowicon.classList.toggle("rotate");
+        }
+
+        for(option of option){
+            option.onclick = function(){
+                selectText.innerHTML =this.textContent;
+                list.classList.toggle("hide");
+            }
+        }
+
+        var selectField2 = document.getElementById("selectField2");
+        var selectText2 = document.getElementById("selectText2");
+        var option2 = document.getElementsByClassName("option2");
+        var list2 = document.getElementById("list2");
+        var arrowicon2 = document.getElementById("arrowicon2");
+
+        selectField2.onclick = function(){
+            list2.classList.toggle("hide2");
+            arrowicon2.classList.toggle("rotate2");
+        }
+
+        for(option2 of option2){
+            option2.onclick = function(){
+                selectText2.innerHTML =this.textContent;
+                list2.classList.toggle("hide2");
+            }
+        }
+    </script>
 </body>
 </html>
