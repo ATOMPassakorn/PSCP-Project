@@ -106,8 +106,15 @@ nav a.active,nav a:hover{
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
+.select-container{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
 .select-body{
     position: relative;
     width: 170px;
@@ -116,6 +123,7 @@ nav a.active,nav a:hover{
     display: flex;
     flex-direction: column;
     justify-content: center;
+    text-align: center;
 }
 
 .select-body select{

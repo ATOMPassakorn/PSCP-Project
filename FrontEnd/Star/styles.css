@@ -125,6 +125,13 @@ h1.starname1{
     margin-bottom: 260px;
     font-size: 50px;
 }
+.historical {
+    text-decoration: underline #B10000 2px;
+}
+.historical:hover ,.historical:active{
+    font-size: 500%;
+    color: red;
+}
 
 .carousel.slide{
     margin-bottom: 10px;
@@ -171,6 +178,7 @@ footer{
 
 footer ul{
     list-style: none;
+    padding-left: 32px ;
 }
 
 .footer-col{
