@@ -161,6 +161,14 @@ h1.starname1{
     --bs-btn-disabled-border-color: #B10000;
 }
 
+.historical {
+    text-decoration: underline #B10000 2px;
+}
+.historical:hover ,.historical:active{
+    font-size: 500%;
+    color: red;
+}
+
 footer{
     display: flex;
     flex-wrap: wrap;
