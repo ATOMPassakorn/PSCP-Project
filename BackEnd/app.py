@@ -74,5 +74,25 @@ def upload_file():
 
     return jsonify({'message': 'upload success'}), 200
 
+@app.route('/get_data1')
+def get_data1():
+    data = {"message":"American musician who served as the bassist \nfor the heavy metal band Metallica."}
+    return jsonify(data)
+
+@app.route('/get_data2')
+def get_data2():
+    data = {"message":"American singer, songwriter, and guitarist."}
+    return jsonify(data)
+
+@app.route('/get_data3')
+def get_data3():
+    data = {"message":"an American bassist. He was the uncredited \nbassist on most of the Motown Records."}
+    return jsonify(data)
+
+@app.route('/get_data4')
+def get_data4():
+    data = {"message":"an American musician. He was the lead vocalist, guitarist, primary songwriter, and a founding member of the grunge band Nirvana."}
+    return jsonify(data)
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)

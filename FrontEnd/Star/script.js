@@ -20,24 +20,30 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-async function fetchData() {
+async function fetchData(url, outputId) {
     try {
-        
-        const response = await fetch('http://127.0.0.1:5000/get_data');
+        const response = await fetch(`https://guitar-salmon.onrender.com${url}`);
 
-        
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
 
         const data = await response.json();
-
         const message = data.message.replace(/\n/g, '<br>');
 
-        document.getElementById('output').innerHTML = message;
+        const outputElement = document.getElementById(outputId);
+        if (outputElement) {
+            outputElement.innerHTML = message;
+        } else {
+            console.error("Error: output element not found");
+        }
 
     } catch (error) {
         console.error('Error fetching data:', error);
-        document.getElementById('output').innerHTML = "";
+        const outputElement = document.getElementById(outputId);
+        if (outputElement) {
+            outputElement.innerHTML = "Error loading content.";
+        }
     }
 }
+
