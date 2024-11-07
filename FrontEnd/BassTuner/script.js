@@ -68,7 +68,7 @@ function analyze() {
 
         const selectedNote = document.getElementById('noteSelect').value;
         const targetFrequency = noteFrequencies[selectedNote];
-        if (pitch && Math.abs(frequency - targetFrequency) <= 15) {
+        if (pitch && Math.abs(frequency - targetFrequency) <= 10) {
             document.getElementById('status').textContent = 'ตรงกัน!';
             if (!PlayedSound) {
                 matchSound.play();
