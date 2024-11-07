@@ -31,7 +31,7 @@ async function startTuning() {
         formData.append('audio', audioBlob, 'audio.wav');
 
         try {
-            const response = await fetch('http://127.0.0.1:5000/upload', {
+            const response = await fetch('https://guitar-salmon.onrender.com/upload', {
                 method: 'POST',
                 body: formData
             });
@@ -192,7 +192,7 @@ document.getElementById('tuningType').onchange = async function() {
     } else if (selectedType === "Bass_Drop_C") {
         noteFrequencies = Bass_Drop_Cfrequencies;
     }
-    const response = await fetch('http://127.0.0.1:5000/get_tuning', {
+    const response = await fetch('https://guitar-salmon.onrender.com/get_tuning', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
